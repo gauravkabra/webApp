@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!--meta http-equiv="refresh" content="2;url=02-language.html" /-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Visa Mobile POS...</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/style-es.css" rel="stylesheet">
+	<link href="css/datepicker.css" rel="stylesheet">
+	<link href="css/signature-pad.css"rel="stylesheet">
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/aes.js"></script>
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-base64-min.js"></script>
+  </head>
+  <body class="light-bg">
+	<!-- Splash Screen -->
+	<div id="splash-block" class="splash-bg">
+		<div class="centered">
+			<img src="images/visa-splash-screen-logo.png" class="center-block splash-logo" alt="visa-logo"/>
+			<div class="splash-text">ePOS</div> 
+		</div>
+	</div>
+	
+	
+	
+	<!-- Language Screen -->
+    <div id="lang-block" class="layout-bg hide-overlay">
+		<div class="container-fluid no-pad cont-shadow">
+			<div class="menu-header">
+				<div class="ret-txt-block"> 
+					<img src="images/login-logo.png" class="logo-landing" alt="logo" />
+					<div class="head-left-title">ePOS</div>
+				</div> 
+			</div>
+			<div class="lang-sel">
+				Establecer su idioma preferido
+			</div>
+			<div class="no-pad cont-lang">
+				<ul class="ul-wrap no-pad">
+					<li class="lang-li"><a id="english" onclick="languageChange('en')">Inglés</a></li>
+         			<li class="lang-li"><a id="spanish" onclick="languageChange('es')">Español</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Login Screen -->
+	<div id="login-block" class="con-height hide-overlay">
+		<div class="center-block"><img src="images/login-logo.png" alt="logo-visa" class="img-responsive sn-logo center-block"/></div>
+		<div class="sn-sub-p"><p>ePOS</p></div> 
+		<div>
+			<form class="login">
+				<div class="form-group has-feedback">
+					<input id="userId" type="text" placeholder="Id Usuario" class="user-icon"/>
+				</div>
+				<div class="err-msg-id hide" id="err-msg-id">
+					Invalid username
+				</div>
+				<div class="form-group has-feedback">
+					<input id="userPwd" type="password" placeholder="contraseña" class="pwd-icon" />
+				</div>
+				<div class="err-msg-pwd hide" id="err-msg-pwd">
+					Invalid Password
+				</div>
+				<div class="form-group has-feedback">
+					<a onclick="doLogin()" class="a-btn btn-default btn-sm sn-btn-lg" id="login"> Log in </a>
+				</div>
+				<div>
+					<a class="reset-link" onClick="hideshow('resetpwd-block','login-block');" id="reset-pwd"> Reset Password </a>
+				</div>
+			</form>
+		</div>
+		<div class="sysInfoDiv">
+			<a class="sysInfo" id="sys-info" onClick="showSysInfo();"> System Information </a>
+		</div>
+	</div>
+	<div id="systemInfo" class="overlay-popup hide-overlay">
+		<div class="container sysInfoDetails">
+			<div id="sys-info-title" class="title-text">
+				System Information
+			</div>
+			<div class="trns-details det-height">
+				<div class="row">
+					<div id="lbl-device-name" class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad"> Device Name <span>:</span></div>
+					<div id="device-name" class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad">XXXXXX</div>
+				</div>
+				<div class="row">
+					<div id="lbl-macId" class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad"> MAC ID <span>:</span></div>
+					<div id="macId" class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad">XXXXXX</div>
+				</div>
+				<div class="row">
+					<div id="lbl-os-name" class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad"> OS Name <span>:</span></div>
+					<div id="os-name" class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad">XXXXXX</div>
+				</div>
+				<div class="row">
+					<div id="lbl-os-version" class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad"> OS Version <span>:</span></div>
+					<div id="os-version" class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad">XXXXXX</div>
+				</div>
+				<div class="row">
+					<div id="lbl-model-number" class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad"> Model Number <span>:</span></div>
+					<div id="model-number" class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad"> XXXXXX</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="systemInfo-btns" class="group-btn splash-back overlay-sysInfo-btn-group hide-overlay">
+		<a id="sysOK-btn" onclick="closeSysInfo();" class="btn btn-default btn-sm btn-normal btn-over-shad enable"> OK </a>
+	</div>
+	<!-- Reset Password Screen -->
+	<div id="resetpwd-block" class="con-height hide-overlay">
+		<div class="center-block"><img src="images/login-logo.png" alt="logo-visa" class="img-responsive sn-logo rst-logo center-block"/></div>
+		<div class="sn-sub-p rst-tagline"><p>ePOS</p></div>
+		<div class="rst-title" id="reset-pwd-label"> Restablecer La Contraseña </div>
+		<div>
+			<form class="login">
+				<div class="form-group has-feedback">
+					<input id="uId" type="text" placeholder="User Id" class="user-icon"/>
+				</div>
+				<div id="rst-usr-err" class="err-msg-id hide">
+					Invalid Username
+				</div>
+				<div class="form-group has-feedback">
+					<input id="rstPwd" type="password" placeholder="Password" class="pwd-icon" />
+				</div>
+				<div id="rst-pwd-err" class="err-msg-pwd hide">
+					The password must not be empty.
+				</div>
+				<div class="form-group has-feedback">
+					<input id="cnfRstPwd" type="password" placeholder="Confirm Password" class="pwd-icon" />
+				</div>
+				<div id="rst-cnfpwd-err" class="err-msg-pwd hide">
+					The password does not match.
+				</div>
+				<div class="form-group has-feedback">
+					<a id="rest-btn" onClick="doReset()" class="a-btn btn-default btn-sm sn-btn-lg btn-rstsubmit"> Reset </a>
+					<a id="rest-cancel-btn" onClick="hideshow('login-block','resetpwd-block');" class="a-btn btn-default btn-sm sn-btn-lg btn-rstsubmit"> Cancel </a>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	<!-- Force Password Change Screen -->
+	<div id="forceresetpwd-block" class="con-height hide-overlay">
+		<div class="center-block"><img src="images/login-logo.png" alt="logo-visa" class="img-responsive sn-logo rst-logo center-block"/></div>
+		<div class="sn-sub-p rst-tagline"><p>e-Terminal</p></div>
+		<div class="rst-title" id="set-credentials"> Set Credentials </div>
+		<div>
+			<form class="login">
+				<div class="form-group has-feedback">
+					<input id="force-rstPwd" type="password" placeholder="Password" class="pwd-icon" />
+				</div>
+				<div id="force-rst-pwd-err" class="err-msg-pwd hide">
+					Password is empty
+				</div>
+				<div class="form-group has-feedback">
+					<input id="force-cnfRstPwd" type="password" placeholder="Confirm Password" class="pwd-icon" />
+				</div>
+				<div id="force-rst-cnfpwd-err" class="err-msg-pwd hide">
+					Password does not match
+				</div>
+				<div class="form-group has-feedback">
+					<input id="force-setPin" type="password" placeholder="New Pin" class="pwd-icon" onInput="checkInput('force-setPin','4');"/>
+				</div>
+				<div id="force-rst-pin-err" class="err-msg-pwd hide">
+					Enter 4 digit pin
+				</div>
+				<div class="form-group has-feedback">
+					<input id="force-cnfPin" type="password" placeholder="Confirm Pin" class="pwd-icon" onInput="checkInput('force-cnfPin','4');"/>
+				</div>
+				<div id="force-rst-cnfpin-err" class="err-msg-pwd hide">
+					Pin does not match
+				</div>
+				<div class="form-group has-feedback">
+					<a onClick="validateForceChangePwd();" id="force-chng-submit-btn" class="a-btn btn-default btn-sm sn-btn-lg btn-rstsubmit"> Submit </a>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	
+	<!-- Retail-Landing Screen -->
+	<div id="retail-landing-block" class="layout-bg hide-overlay">
+	
+		<!-- Tabbed View Menu -->
+		<div class="container-fluid no-pad cont-shadow">
+			<div class="menu-header">
+				<div class="ret-txt-block"> 
+					<img src="images/login-logo.png" class="logo-landing" alt="logo" />
+					<div class="head-left-title">ePOS</div>
+				</div> 
+				<a onclick="logout(); hideshow('login-block','retail-landing-block');"> <img src="images/signout.png" class="signout-btn" /> </a>
+			</div>
+		</div>
+		<div class="container-fluid no-pad tab-mar">
+				<div class="tab-menu">
+					<div class="tab-menu tab-mar-bot">
+						<a onclick="resetmenu(); hideshow('retail-block','retail-landing-block');" onmouseover="$('#ret-tab-icn').attr('src','images/retail-tab-hov.png')" onmouseout="$('#ret-tab-icn').attr('src','images/retail-tab-nor.png')">
+							<div class="ret-tab-icn"> <img id="ret-tab-icn" src="images/retail-tab-nor.png" alt="Retail Tab Icon" class="tab-icn" /> </div>
+							<div class="tab-heading" id="retail" >Retail</div>
+						</a>
+					</div>
+				</div>
+			
+			<!-- <div class="tab-menu tab-mar-bot">
+				<a id="bat-tab" onclick="batchSummary()" onmouseover="$('#bat-tab-icn').attr('src','images/batch-settlment-tab-hov.png')" onmouseout="$('#bat-tab-icn').attr('src','images/batch-settlment-tab-nor.png')">
+					<div class="ret-tab-icn"> <img id="bat-tab-icn" src="images/batch-settlment-tab-nor.png" alt="Batch Tab Icon" class="tab-icn" /> </div>
+					<div class="tab-heading" id="batchSetlle">Batch Settlement</div>
+				</a>
+			</div> -->
+			
+				<!-- <div class="tab-menu tab-mar-bot">
+						<a id="vas-tab" onMouseOver="$('#val-tab-icn').attr('src','images/value-added-tab-hov.png')" onMouseOut="$('#val-tab-icn').attr('src','images/value-added-tab-nor.png')">
+							<div class="ret-tab-icn"> <img id="val-tab-icn" src="images/value-added-tab-nor.png" alt="Value Added Tab Icon" class="tab-icn" /> </div>
+							<div class="tab-heading tab-head" id="value-added-tab">Value Added Services</div>
+						</a>
+				</div> -->
+			
+				
+				<div class="tab-menu">
+						<a id="prf-tab" onClick="hideshow('user-profile-block','retail-landing-block');" onMouseOver="$('#prf-tab-icn').attr('src','images/profile-tab-hov.png')" onMouseOut="$('#prf-tab-icn').attr('src','images/profile-tab-nor.png')">
+							<div class="ret-tab-icn"> <img id="prf-tab-icn" src="images/profile-tab-nor.png" alt="Profile Icon" class="tab-icn" /> </div>
+						<div class="tab-heading" id="user-profile">My Profile</div>
+						</a>
+				</div>
+		</div>
+	</div>
+	
+	<!-- User Profile Screen -->
+	<div id="user-profile-block" class="layout-bg hide-overlay">
+		<div class="container-fluid no-pad cont-shadow">
+			<div class="menu-header">
+				<div class="ret-txt-block"> <a onClick="hideshow('retail-landing-block','user-profile-block');"><img src="images/back-arrow.png" class="back-btn" /><span id="user-profile-title">User Profile</span></a></div> 
+			</div>
+		</div>
+		<div class="container-fluid no-pad cont-pad">
+			<ul class="ul-wrap">
+				<li class="ret-lipad"><a id="chnPwd" onClick="hideshow('chnPwd-block','user-profile-block');" class="btn btn-default btn-block sn-ret-btn pwd-icn"><span id="change-pwd">Change Password</span></a></li>
+				<!-- <li class="ret-lipad"><a id="changePin" onClick="hideshow('chnPin-block','user-profile-block');" class="btn btn-default btn-block sn-ret-btn pwd-icn"><span id="change-pin">Change Pin</span></a></li>
+				<li class="ret-lipad"><a id="personalDetails" onClick="hideshow('personalDetails-block','user-profile-block');" class="btn btn-default btn-block sn-ret-btn prf-icn"><span id="personal-details">Personal Details</span></a></li> -->
+			</ul>
+		</div>
+	</div>
+	
+	<!-- Change Password Screen -->
+	<div id="chnPwd-block" class="layout-bg hide-overlay">
+		<div class="container-fluid no-pad cont-shadow">
+			<div class="menu-header">
+				<div class="ret-txt-block"> <a onClick="resetChangePwdFields(); hideshow('user-profile-block','chnPwd-block');"><img src="images/back-arrow.png" class="back-btn" /><span id="change-pwd-title">Change Password</span></a></div> 
+			</div>
+		</div>
+		<div class="container con-mar-top con-body">	
+			<div class="search-block">
+				<div class="row">
+					<div id="old-pwd-label" class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-head-void">Old Password</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-cnt-void">
+						<input id="old-pwd" type="password" class="pwd-text cust-txt-width">
+						<div id="chg-old-pwd-err" class="error txt-err-msg hide"> Password is empty </div>
+					</div>	
+				</div>
+				<div class="row">
+					<div id="new-pwd-label" class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-head-void">New Password</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-cnt-void">
+						<input id="new-pwd" type="password" class="pwd-text cust-txt-width">
+						<div id="chg-new-pwd-err" class="error txt-err-msg hide"> Password is empty</div>
+					</div>				
+				</div>
+				<div class="row">
+					<div id="confirm-pwd-label" class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-head-void">Confirm Password</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-cnt-void">
+						<input id="confirm-pwd" type="password" class="pwd-text cust-txt-width">
+						<div id="cnf-pwd-err" class="error txt-err-msg hide"> Password does not match </div>
+					</div>	
+				</div>
+			</div>
+			<div class="graphic-btns grp-btn-mar">
+				<a id="change-pwd-submit-btn" onClick="validateChangePwd()" class="btn btn-default btn-sm btn-normal enable"> Submit </a> <a id="change-pwd-cancel-btn" onClick="hideshow('retail-landing-block','chnPwd-block');" class="btn btn-default btn-sm btn-normal btn-cancel btn-cancel-icn"> Cancel </a>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- Change Pin Screen -->
+	<div id="chnPin-block" class="layout-bg hide-overlay">
+		<div class="container-fluid no-pad cont-shadow">
+			<div class="menu-header">
+				<div class="ret-txt-block"> <a onClick="hideshow('user-profile-block','chnPin-block');"><img src="images/back-arrow.png" class="back-btn" /><span id="change-pin-title"> Change Pin </span></a></div> 
+			</div>
+		</div>
+		<div class="container con-mar-top con-body">	
+			<div class="search-block">
+				<div class="row">
+					<div id="lbl-old-pin" class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-head-void">Old Pin</div>
+					<div id="old-pin" class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-cnt-void">
+						<input type="text" class="amt-text cust-txt-width">
+						<div id="old-pin-err" class="error txt-err-msg hide"> Pin is empty </div>
+					</div>				
+				</div>
+				<div class="row">
+					<div id="lbl-new-pin" class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-head-void">New Pin</div>
+					<div id="new-pin" class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-cnt-void">
+						<input type="text" class="amt-text cust-txt-width">
+						<div id="new-pin-err" class="error txt-err-msg hide"> Pin is empty </div>
+					</div>				
+				</div>
+				<div class="row">
+					<div id="lbl-confirm-pin" class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-head-void">Confirm Pin</div>
+					<div id="confirm-pin" class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-cnt-void">
+						<input type="text" class="amt-text cust-txt-width">
+						<div id="confirm-pin-err" class="error txt-err-msg hide"> Pin does not match </div>
+					</div>				
+				</div>
+			</div>
+			<div class="graphic-btns grp-btn-mar">
+				<a id="change-pin-submit-btn" onClick="validatePin()" class="btn btn-default btn-sm btn-normal enable"> Submit </a> <a id="change-pin-cancel-btn" onClick="hideshow('user-profile-block','chnPin-block');" class="btn btn-default btn-sm btn-normal btn-cancel btn-cancel-icn"> Cancel </a>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Update Personal Details Screen -->
+	<div id="personalDetails-block" class="layout-bg hide-overlay">
+		<div class="container-fluid no-pad cont-shadow">
+			<div class="menu-header">
+				<div class="ret-txt-block"> <a onClick="hideshow('user-profile-block','personalDetails-block');"><img src="images/back-arrow.png" class="back-btn" /><span id= "personal-details-title">Personal Details </span></a></div> 
+			</div>
+		</div>
+		<div class="container con-mar-top con-body">	
+			<div class="search-block">
+				<div class="row">
+					<div id="lbl-email-id" class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-head-void">E-mail Id</div>
+					<div id="email-id" class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-cnt-void">
+						<input type="text" class="amt-text cust-txt-width">
+						<div id="email-id-err" class="error txt-err-msg hide"> Invalid E-mail Id </div>
+					</div>				
+				</div>
+				<div class="row">
+					<div id="lbl-contact-no" class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-head-void">Contact No</div>
+					<div id="contact-no" class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-cnt-void">
+						<input type="text" class="amt-text num-txt cust-txt-width">
+						<div id="contact-no-err" class="error txt-err-msg hide"> Invalid Contact number </div>
+					</div>				
+				</div>
+			</div>
+			<div class="graphic-btns grp-btn-mar">
+				<a onClick="hideshow('retail-landing-block','personalDetails-block');" class="btn btn-default btn-sm btn-normal enable"><span id="update-btn"> Submit </span></a> <a onClick="hideshow('user-profile-block','personalDetails-block');" class="btn btn-default btn-sm btn-normal btn-cancel btn-cancel-icn"><span id="update-cancel"> Cancel </span></a>
+			</div>
+		</div>
+	</div>
+	
+	<div>
+	<!-- Retail Screen -->
+	<div id="retail-block" class="layout-bg hide-overlay">
+		<div class="container-fluid no-pad cont-shadow">
+			<div class="menu-header">
+				<div class="ret-txt-block"> <a onclick="hideshow('retail-landing-block','retail-block');"><img src="images/back-arrow.png" class="back-btn" /><span id="retail-header">Retail</span></a></div> 
+				<a onclick="logout(); hideshow('login-block','retail-block');"> <img src="images/signout.png" class="signout-btn" /> </a>
+			</div>
+		</div> 
+		<div id="retBlock" class="container-fluid no-pad cont-pad">
+			<ul class="ul-wrap">
+				<li class="ret-lipad"><a id="retailMenuSale" onclick="hideshow('sale-block','retail-block');" class="btn btn-default btn-block sn-ret-btn sale-icn">Sale</a></li>
+				<li class="ret-lipad"><a id="retailMenuRefund" class="btn btn-default btn-block sn-ret-btn refund-icn" >Refund</a></li>
+				<li class="ret-lipad"><a id="retailMenuVoid" class="btn btn-default btn-block sn-ret-btn void-icn">Void</a></li>
+				<li class="ret-lipad"><a id="retailMenuReprint" onclick="resetreprint(); promptForPin();" class="btn btn-default btn-block sn-ret-btn reprint-icn">Reprint</a></li>
+			</ul>
+		</div>
+			
+	</div>
+	
+	<!-- Prompt to enter PIN -->
+	<div id="confirm-reprint" class="overlay-popup hide-overlay">
+		<div id="enter-pin-msg" class="overlay-msg">Enter 4 Digit PIN to proceed </div>
+		<div class="con-rdr-icn"> <input id="pin-txtbox" type="password" value="9999" class="amt-text cust-txt-width num-txt"> </div>
+	</div>
+	<div id="confirm-retail-btns" class="group-btn overlay-btn-group hide-overlay">
+		<a id="conf-pin-btn" onClick="confirmReprint();" class="btn btn-default btn-sm btn-normal enable btn-over-shad"> Submit </a> <a id="rej-pin-btn" class="btn btn-default btn-sm btn-normal btn-cancel-icn btn-over-shad"> Cancel </a>
+	</div>
+		
+	<div id="menu-connect-reader" class="overlay-popup layout-height hide-overlay">
+    	<div class="overlay-msg status-msg">Connecting to Reader...</div>
+    	<div class="con-rdr-icn"> <img src="images/connect-reader.png" class="rdr-icn" /> </div>
+  </div>
+  	<div id="menu-connect-fail" class="overlay-popup hide-overlay">
+      <div class="overlay-msg" id="connect-fail-msg">Connection Failed</div>
+      <div class="con-rdr-icn"> <img src="images/connect-failiure.png" class="con-failed-icn" /> </div>
+    </div>
+    <div id="menu-connect-fail-btns" class="group-btn overlay-btn-group hide-overlay">
+      <a id="menu-retry-submit-btn" onclick="retryMenuConnect()" class="btn btn-default btn-sm btn-normal btn-retry-icn"> Retry </a> <a id="menu-con-failed-cancel" class="btn btn-default btn-sm btn-normal btn-cancel-icn"> Cancel </a>
+    </div>
+	
+	<!-- Sale Screen -->
+	<div id="sale-block" class="layout-bg hide-overlay">
+		<div class="container-fluid no-pad cont-shadow">
+			<div class="menu-header">
+				<div class="ret-txt-block"> <a onclick="resetsale(); hideshow('retail-block','sale-block');"> <img src="images/back-arrow.png" class="back-btn" /><span id="sale-header">Sale</span></a></div>
+			</div>
+		</div>
+		<div class="centered-sale">
+			<div id="sale-content" class="cont-pad-top">
+			 <div class="err-msg-id hide" id="errorSaleAmount">Enter valid amount </div>
+				<div class="wrapper-center">
+					<span id="amount">Amount</span> <input type="number" class="amt-text" id="sale-txt-amount" onInput="checkInput('sale-txt-amount','10');"> <input id="sale-txt-decimal" type="number" class="mxn-text" onInput="checkInput('sale-txt-decimal','2');"> <span>MXN</span><br/>
+					<div class="group-btn">
+					<a id="submit-btn" onclick="proceedSale()"
+              class="btn btn-default btn-sm btn-normal disable" disabled="disabled"> Submit </a>
+						<a class="btn btn-default btn-sm btn-normal btn-cancel-icn" id="saleCancel"> Cancel </a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="connect-reader" class="overlay-popup layout-height hide-overlay">
+    	<div class="overlay-msg status-msg">Connecting to Reader...</div>
+    	<div class="con-rdr-icn"> <img src="images/connect-reader.png" class="rdr-icn" /> </div>
+  </div>
+  	<div id="connect-fail" class="overlay-popup hide-overlay">
+      <div class="overlay-msg">Connection Failed</div>
+      <div class="con-rdr-icn"> <img src="images/connect-failiure.png" class="con-failed-icn" /> </div>
+    </div>
+    <div id="connect-fail-btns" class="group-btn overlay-btn-group hide-overlay">
+      <a id="retry-submit-btn" onclick="retryconnect()" class="btn btn-default btn-sm btn-normal btn-retry-icn"> Retry </a> <a id="con-failed-cancel" class="btn btn-default btn-sm btn-normal btn-cancel-icn"> Cancel </a>
+    </div>
+		
+	<!-- Sale Success Screen -->
+	<div id="txnsummary-block" class="layout-bg layout-height hide-overlay">
+		<div class="container-fluid no-pad cont-shadow">
+			<div class="menu-header">
+				<div class="ret-txt-block img-space" id="header"> Sale</div>
+			</div>
+		</div>
+		<div id="success-page" class="container con-mar-top">
+			<div id="success-msg" class="success-title">
+				<img src="images/success.png" class="success-icn" /> <span class="sccess-txt" id="sale-success">Success !</span>
+			</div>
+			<div class="title-text" id="sale-trans-summary">
+				Transaction Summary
+			</div>
+            <div class="trns-details">
+                   <div class="row">
+                          <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad" id="lblMerchantName">Merchant Name </div>
+                          <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad" id="merchantName">Merchant Name</div>
+                   </div>
+                   <div class="row">
+                          <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad" id="lblMId">MID </div>
+                          <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad" id="mid">XXXXXXXX</div>
+                   </div>
+                   <div class="row">
+                          <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad" id="lblTId">TID </div>
+                          <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad" id="tid">XXXXXXX</div>
+                   </div>
+                          <div class="row">
+                          <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad" id="lblOperatorId">Operator ID </div>
+                          <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad" id="operatorId">XXXXXXX</div>
+                   </div>
+            </div>
+            <div class="trns-details" id="trns-details">
+                   <div class="row">
+                          <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad" id="lblTransactionId">Transaction ID </div>
+                          <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad" id="transactionId">BPC123456789</div>
+                   </div>
+                   <div class="row">
+                          <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad" id="lblDate">Transaction Date </div>
+                          <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad" id="date">14 Apr 2015 16:27:17</div>
+                   </div>
+                   <div class="row">
+                          <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad" id="lblRRN">RRN </div>
+                          <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad" id="rrn">XXXXXXXXXXX</div>
+                   </div>
+                   <div class="row">
+                          <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad" id="lblAuth">Auth </div>
+                          <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad" id="auth">XXXXXXXXXXX</div>
+                   </div>
+            </div>
+            <div class="card-details">
+                   <div class="row">
+                          <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad" id="lblCardType">Card Type </div>
+                          <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad" id="cardType">VISA</div>
+                   </div>
+                   <div class="row">
+                          <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad" id="lblCardNum">Card Number </div>
+                          <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad" id="cardNum">XXXX XXXX XXXX X626</div>
+                   </div>
+                   <div class="row">
+                          <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad" id="lblType">Transaction Type </div>
+                          <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad" id="type">Sale</div>
+                   </div>
+                   <div class="row">
+                          <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad" id="lblAmount">Transaction Amount </div>
+                          <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad" id="summaryAmount">16500.00 USD</div>
+                   </div>
+            </div>
+                           <div class="graphic-btns">
+          <a onclick="hideshow('retail-landing-block','txnsummary-block');" class="btn btn-default btn-sm btn-normal enable" id="ok"> Ok </a> 
+          <a onclick="showreciept()" class="btn btn-default btn-sm btn-normal prt-btn-icn" id="receipt"> Receipt </a>
+          <!-- <a href="#" class="btn btn-default btn-sm btn-normal enable" id=""> <img src="images/receipt.png" alt="receipt" class="print-btn" /> </a> -->
+        </div>
+      	</div>
+      	<div id="printing-overlay" class="overlay-popup hide-overlay">
+      <div id="receipt-msg" class="overlay-msg">Receipt generation is in progress...</div>
+      <div class="con-rdr-icn"> <img src="images/print.png" class="rdr-icn" /> </div>
+    </div>
+    <div id="receipt-overlay" class="overlay-print hide-overlay">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rcp-head"><img src="images/banamax_logo.png"/></div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rcp-merchant-detail" id="recieptMerchantName">La Lagunilla Market Address</div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rcp-merchant-detail" id="merchantAddress1">Corner Rayón and Allende</div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rcp-merchant-detail" id="merchantAddress2">Federal District, Mexico</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-head" id="lblEmpty"></div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-val"  id="valEmpty"></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-head" id="lblrecieptMerchantName">Merchant:</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-val"  id="recieptMerchantName">La Lagunilla Market</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-head" id="lblTerminal">Terminal:</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-val" id="recieptTid">689532</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-head" id="lblrecieptTransactionId">Transaction ID:</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-val" id="recieptTransactionId">BPC123456789</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-head" id="lblrecieptDate">Transaction Date:</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-val" id="recieptDate">Jan 05, 2013  11:15:38</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-head" id="lblBatch">Batch:</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-val" id="batch">111</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-head" id="lblInvoiceNumber">Invoice:</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-val" id="invoiceNumber">222</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-head" id="lblRRN">RRN:</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-val" id="recieptRrn">1247985</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-head pad-bottom" id="lblAuth">Auth:</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-val pad-bottom" id="auth">333</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-head" id="lblAid">AID:</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-val" id="aid">AO13E784</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-head" id="lblTc">TC:</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-val" id="tc">BPC123456789</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-head" id="lblAlabel">ALABEL:</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-val" id="aLabel">Visa</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-head pad-bottom" id="lblAprlabel">APRNAM:</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-val pad-bottom" id="aprLabel">Visa</div>
+          
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rcp-cnt-head" id="recieptCardType">VISA</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-head" id="recieptCardNum">************2345</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-val-head" id="swiped">SWIPED</div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rcp-cnt-head pad-bottom" id="type">SALE</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-head pad-bottom" id="lblTotal">Total</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-val-head pad-bottom" id="recieptAmount">XX MXN</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rcp-cnt-head rcp-cust-name" id="customerName">Customer Name</div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rcp-cnt-head" id="signature">X________________________________</div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rcp-cnt-val-terms" id="terms">I AGREE TO PAY ABOVE TOTAL AMOUNT ACCORDING TO CARD ISSUER AGREEMENT MERCHANT AGREEMENT IF CREDIT VOUCHER</div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rcp-merchant-detail" id="emvTerms" >Authorization with Electronic Signature</div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rcp-merchant-detail" id="copy">MERCHANT COPY</div>
+          <img id="cust-sign-img" src="" alt="Customer Sign" class="cust-sign hide" />
+          
+        </div>
+        
+      </div>
+      
+      	<div id="sale-action" class="overlay-popup splash-back hide-overlay">
+			<div id ="action-overlay-msg" class="overlay-msg">Which action do you want to perform?</div>
+		</div>
+		<div id="sale-action-btns" class="group-btn splash-back overlay-btn-group hide-overlay">
+			<a id="open-pdf-btn" onclick="openpdf()" class="btn btn-default btn-sm btn-normal btn-over-shad btn-pdf"> Open PDF </a> <a id="home" onclick="hideshow('retail-landing-block','txnsummary-block');" class="btn btn-default btn-sm btn-normal btn-over-shad btn-home"> Home </a>
+		</div>
+		</div>
+	
+	<!-- Signature and Receipt Screen -->
+	<div id="sign-rcpt-block" class="layout-bg hide-overlay">
+		<div class="container-fluid no-pad cont-shadow">
+			<div class="menu-header">
+				<div class="ret-txt-block img-space"> Sale</div>
+			</div>
+		</div>
+		<div id="cust-sign-overlay" class="overlay-popup layout-height">
+			<div id="signature-pad" class="m-signature-pad">
+				<div id="sign-err" class="error sign-err-msg hide">
+					Provide valid signature
+				</div>
+				<div class="m-signature-pad--body">
+				  <canvas></canvas>
+				</div>
+				<div class="m-signature-pad--footer">
+				  <button id="sign-clear" class="btn btn-default btn-sm btn-normal btn-cancel-icn btn-clear-sign btn-over-shad" data-action="clear">Clear</button>
+				  <button id="sign-print" class="btn btn-default btn-sm btn-normal prt-btn-icn btn-print-sign btn-over-shad" data-action="save">Print</button>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+
+	<!-- Transaction Search Result Screen -->
+	<div id="searchresult-block" class="layout-bg hide-overlay">
+		<div class="container-fluid no-pad cont-shadow">
+			<div class="menu-header">
+				<div class="ret-txt-block"> <a onclick="resetvoid(); backBtn();"> <img src="images/back-arrow.png" class="back-btn" /><span id="transactions-header">Transactions</span></a></div>
+			</div>
+		</div>
+		<div class="container-fluid no-pad top-mar" id="searchResultDiv">
+			
+			
+		</div>
+		<div id="void-confirm" class="overlay-popup splash-back hide-overlay">
+			<div class="overlay-msg" id="confirmation-msg">Are you sure you want to Void this transaction?</div>
+		</div>
+		<div id="void-confirm-btns" class="group-btn splash-back overlay-btn-group hide-overlay">
+			<a id="yes-btn" class="btn btn-default btn-sm btn-normal btn-over-shad enable"> Yes </a> <a id="no-btn" class="btn btn-default btn-sm btn-normal btn-cancel-icn btn-over-shad"> No </a>
+		</div>
+	</div>
+	
+	
+	
+	<!-- Void Success Screen -->
+	<div id="voidsuccess-block" class="layout-bg hide-overlay">
+		<div class="container-fluid no-pad cont-shadow">
+			<div class="menu-header">
+				<div class="ret-txt-block img-space" id="void-title"> Void</div>
+			</div>
+		</div>
+		<div id="void-success" class="container con-mar-top">
+			<div class="success-title">
+				<img src="images/success.png" class="success-icn" /> <span class="sccess-txt" id="void-success-header">Success !</span>
+			</div>
+			<div class="title-text" id="void-trans-summary">
+				Transaction Summary
+			</div>
+			<div class="trns-details">
+				<div class="row">
+					<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad">Transaction ID <span>:</span></div>
+					<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad">BPC123456789</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad">Transaction Status <span>:</span></div>
+					<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad">Success</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad">Responce Code <span>:</span></div>
+					<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad">XXXXXXXX</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad">Reference Number <span>:</span></div>
+					<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad">XXXXXXXXXXX</div>
+				</div>
+			</div>
+			<div class="mercht-details">
+				<div class="row">
+					<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad">Merchant Name <span>:</span></div>
+					<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad">Merchant Name</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad">Oprator/Agent ID <span>:</span></div>
+					<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad">XXXXXXXX</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad">MID <span>:</span></div>
+					<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad">XXXXXXXX</div>
+				</div>
+			</div>
+			<div class="card-details">
+				<div class="row">
+					<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad">Card Number <span>:</span></div>
+					<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad">XXXX XXXX XXXX X626</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad">Card Type <span>:</span></div>
+					<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad">Visa</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad">Transaction Type <span>:</span></div>
+					<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad">Sale</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 cust-head-pad">Transaction Amount <span>:</span></div>
+					<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 cust-cnt-pad">16500.00 MXN</div>
+				</div>
+			</div>
+			<div class="graphic-btns">
+				<a onclick="hideshow('retail-landing-block','voidsuccess-block');" class="btn btn-default btn-sm btn-normal btn-ok enable"> OK </a> <a onclick="showrecieptvoid();" id="void-reciept" class="btn btn-default btn-sm btn-normal prt-btn-icn"> Reciept </a>
+			</div>
+		</div>
+		<div id="void-printing-overlay" class="overlay-popup layout-height hide-overlay">
+			<div class="overlay-msg">Printing in process...</div>
+			<div class="con-rdr-icn"> <img src="images/print.png" class="rdr-icn" /> </div>
+		</div>
+		<div id="void-receipt-overlay" class="overlay-print hide-overlay">
+			<div class="row sap-bottom">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rcp-head"><img src="images/banamax_logo.png" alt="Banamax Logo"/></div>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rcp-detail">BLM/Bimbo Merchant Name</div>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rcp-detail">Bimbo Merchant Address 1</div>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rcp-detail">Bimbo Merchant Address 2</div>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rcp-detail pad-bottom">Mexico</div>
+			</div>
+			<div class="row sap-bottom">
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-head">Merchant:</div>
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-val">BLMID/BimboID</div>
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-head">Terminal:</div>
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-val">12345678</div>
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-head">Transaction:</div>
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-val">4839</div>
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-head">Date:</div>
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-val">Jan 05, 2013  11:15:38</div>
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-head pad-bottom">RRN:</div>
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-val pad-bottom">819230658395</div>
+			</div>
+			<div class="row sap-bottom">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rcp-cnt-head">VISA</div>
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-head">************2345</div>
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-val-head ">SWIPED</div>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rcp-cnt-head pad-bottom">Sale</div>
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-head pad-bottom">Total</div>
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rcp-cnt-val-head pad-bottom">10.00 MXN</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rcp-cnt-head rcp-cust-name" id="cust-name">Customer Name</div>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rcp-cnt-head">X________________________________</div>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rcp-cnt-val-terms">I AGREE TO PAY ABOVE TOTAL AMOUNT ACCORDING TO CARD ISSUER AGREEMENT MERCHANT AGREEMENT IF CREDIT VOUCHER</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Reprint Search Screen -->
+	<div id="reprt-search-block" class="layout-bg hide-overlay">
+		<div class="container-fluid no-pad cont-shadow">
+			<div class="menu-header">
+				<div class="ret-txt-block"> <a onclick="resetreprint(); hideshow('retail-block','reprt-search-block');"><img src="images/back-arrow.png" class="back-btn" /><span id="reprt-search-title">Search Transaction</span></a></div> 
+			</div>
+		</div>
+			
+		<div class="container con-mar-top con-body">	
+			<div class="search-block">        
+				<div class="row">
+					<div id="reprt-search-transId" class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-head-void">Transaction ID</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-cnt-void">
+					<div id="reprt-trns-id-err" class="error txt-err-msg hide"> Invalid transaction id </div> 
+					<input id="reprt-transId" type="number" class="amt-text cust-txt-width"></div>				
+				</div>
+				<div class="row">
+					<div id="reprt-search-transDate" class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-head-void">Transaction Date</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-cnt-void">
+						<div class="input-append date" data-date-format="dd-mm-yyyy">
+						  <input type="text" class="amt-text cust-txt-width sn-date-icon" id="prt-rcp-date-pick">
+						</div>
+					</div>				
+				</div>
+				<div class="row">
+					<div id="reprt-search-transType" class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-head-void">Transaction Type</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-cnt-void">
+						<div class="btn-group">
+							<button type="button" class="amt-text cust-txt-width cust-drp-dwn dropdown-toggle" data-toggle="dropdown">
+								<span data-bind="label" id="reprt-select-label">Select</span> <span class="caret cust-drp-dwn-crt"></span>
+							</button>
+							<ul class="dropdown-menu cust-txt-width cust-drp-list" role="menu">
+								<li><a id="reprt-search-transType-sale" href="#">Sale</a></li>
+								<li><a id="reprt-search-transType-refund" href="#">Refund</a></li>
+								<li><a id="reprt-search-transType-void"href="#">Void</a></li>			
+							</ul>
+					    </div>
+					</div>				
+				</div>
+				<div class="row">
+					<div id="reprt-search-pan" class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-head-void">Last 4 digits of PAN</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-cnt-void">
+					<input type="number" class="amt-text cust-txt-width" id="rpt-pan" onInput="checkInput('rpt-pan','4');"></div>	
+					<div id="reprt-pan-err" class="error txt-err-msg hide"> Invalid Pan </div> 			
+				</div>
+			</div>
+			<div class="graphic-btns grp-btn-mar">
+				<a id="reprintSearch" onclick="searchTransaction()" class="btn btn-default btn-sm btn-normal btn-search-icn"> Search </a> <a id="reprintCancel" class="btn btn-default btn-sm btn-normal btn-cancel btn-cancel-icn" onclick="hideshow('retail-block','reprt-search-block');"> Cancel </a>
+			</div>
+		</div>
+	</div>
+		
+	<!-- Batch Settlement Screen -->
+	<div id="batch-settle-block" class="layout-bg hide-overlay">
+		<div class="container-fluid no-pad cont-shadow">
+			<div class="menu-header">
+				<div class="ret-txt-block img-space"><span id="settle-header">Settle</span></div>
+			</div>
+		</div>
+		<div id="success-page" class="container con-mar-top">
+      <div class="title-text" id="txnSummaryLabel">
+        Transaction Summary
+      </div>
+      <div class="title-head-text" id="sale">
+        Sale
+      </div>
+      <div class="sale-details">
+        <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-head-pad" id="saleCountLabel">No. of Sale Transactions</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-cnt-pad" id="saleCount">71</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-head-pad" id="saleTotalLabel">Total Sale Amount</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-cnt-pad" id="saleTotal">17000 MXN</div>
+        </div>
+      </div>
+      <div class="title-head-text" id="refund">
+        Refund
+      </div>
+      <div class="refund-details">
+        <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-head-pad" id="refundCountLabel">No. of Refund Transactions</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-cnt-pad" id="refundCount">7</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-head-pad" id="refundTotalLabel">Total Refund Amount</div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-cnt-pad" id="refundTotal">$170</div>
+        </div>
+      </div>
+      <!-- <div class="title-head-text bod-rad-amt-txt">
+        <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-head-pad" id="totalLabel">Total Amount </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 cust-cnt-pad" id="total">$1000</div>
+        </div>
+      </div> -->
+      <div class="graphic-btns">
+        <a class="btn btn-default btn-sm btn-normal btn-sattle enable" id="settle"> Settle </a> <a class="btn btn-default btn-sm btn-normal btn-cancel-icn" id="cancel" onclick="hideshow('retail-landing-block','batch-settle-block');"> Cancel </a>
+      </div>
+    </div>
+		<div id="process-settlement" class="overlay-popup layout-height hide-overlay">
+      <div class="overlay-msg" id="overlay-msg">Processing Settlement...</div>
+      <div class="con-rdr-icn"> <img src="images/proccessing.gif" class="rdr-icn" id="rdr-icn"/> </div>
+    </div>
+	</div>
+	
+	<script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="js/pos-script.js"></script>
+	<script src="js/signature_pad.js"></script>
+	<script src="js/application.js"></script>
+	<script src="js/app.js"></script>
+	<script>
+		$( document.body ).on( 'click', '.dropdown-menu li', function( event ) {
+			var $target = $( event.currentTarget );
+			$target.closest( '.btn-group' ).find( '[data-bind="label"]' ).text( $target.text()).end().children( '.dropdown-toggle' ).dropdown( 'toggle' );
+			return false;
+		});
+	</script>
+		
+  </body>
+</html>

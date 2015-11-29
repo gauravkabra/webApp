@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  
+  <link rel="shortcut icon" href="#" type="images/favicon.png">
+  
+  <!--d3 and dimple libraries--> 
+  <script type="text/javascript" src="/project/d3/d3.js"></script>
+  <script type="text/javascript" src="/project/d3/dimple.js"></script>
+
+  <title>Root|Realistic Overview Of Tuples</title>
+
+
+
+
+  <!--common-->
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/style-responsive.css" rel="stylesheet">
+
+
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- left side start-->
+    <div class="left-side sticky-left-side">
+
+        <!--logo and iconic logo start-->
+        <div class="logo">
+            <a href="index.html"><img src="images/logo.png" alt=""></a>
+        </div>
+
+        <div class="logo-icon text-center">
+            <a href="index.html"><img src="images/logo_icon.png" alt=""></a>
+        </div>
+        <!--logo and iconic logo end-->
+
+        <div class="left-side-inner">
+
+            <!-- visible to small devices only -->
+            <div class="visible-xs hidden-sm hidden-md hidden-lg">
+                <div class="media logged-user">
+                    <img alt="" src="images/photos/user-avatar.png" class="media-object">
+                    <div class="media-body">
+                        <h4><a href="#">Admin</a></h4>
+                        <span>"Hello There..."</span>
+                    </div>
+                </div>
+
+                
+            </div>
+
+            <!--sidebar nav start-->
+            <ul class="nav nav-pills nav-stacked custom-nav">
+                <li class="active"><a href="index.html"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+                
+                
+
+              
+				<li class="menu-list"><a href="#"><i class="fa fa-th-list"></i> <span>Data Organisation</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="basic_table.html"> Products Available </a></li>
+                        <li><a href="dynamic_table.html"> Mode Of Order </a></li>
+                        <li><a href="responsive_table.html"> Sizes Available </a></li>
+                        
+                    </ul>
+                </li>
+				
+                <li class="menu-list"><a href=""><i class="fa fa-bar-chart-o"></i> <span>Charts</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="product_sales_charts.html"> Net Sales VS Product</a></li>
+                        <li><a href="product_categories_charts.html"> Product VS Its Categories</a></li>
+                        <li><a href="product_time_charts.html">Product VS Time</a></li>
+                        <li><a href="net_time_charts.html">Net Sales VS Time</a></li>
+                    </ul>
+                </li>
+                
+
+                <li class="menu-list"><a href="#"><i class="fa fa-map-marker"></i> <span>Geographical Representation</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="google_map.php"> Google Map</a></li>
+                        <li><a href="net_sales_map.html"> Net Sales Map</a></li>
+                        <li><a href="Product_sales_map.html"> Product Sales Map</a></li>
+                    </ul>
+                </li>
+                
+
+            </ul>
+            <!--sidebar nav end-->
+
+        </div>
+    </div>
+    <!-- left side end-->
+    
+    <!-- main content start-->
+    <div class="main-content" >
+
+        <!-- header section start-->
+        <div class="header-section">
+
+            <!--toggle button start-->
+            <a class="toggle-btn"><i class="fa fa-bars"></i></a>
+            <!--toggle button end-->
+
+          
+
+            <!--notification menu start -->
+            <div class="menu-right">
+                <ul class="notification-menu">
+                  
+                   
+                    
+                    <li>
+                        <a href="#" class="btn btn-default dropdown-toggle">
+                            <img src="images/photos/user-avatar.png" alt="" />
+                            Admin
+                            <span class="caret"></span>
+                        </a>
+                        
+                    </li>
+
+                </ul>
+            </div>
+            <!--notification menu end -->
+
+        </div>
+        <!-- header section end-->
+
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                Dashboard
+            </h3>
+            <ul class="breadcrumb">
+                
+                <li class="active"> Charts / Product Sizes </li>
+            </ul>
+            
+        </div>
+        <!-- page heading end-->
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+			<div class="col-md-12">
+				<section class="panel">
+				<br>
+					<center><h3>Product vs Its Categories based on Net Sales</h3></center>
+					
+					<br>
+				</section>
+            </div>
+            <div class="col-md-8">
+				<section class="panel">
+				<nav ><br><center>
+					<svg width="600" height="520" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0,10)"><g><path class="link" d="M10,143.671495507888C300,143.671495507888 300,48.67149550788805 590,48.67149550788805" style="stroke-width: 97.342991015776px; fill: none; stroke: rgb(174, 191, 105); stroke-opacity: 0.4;"></path><path class="link" d="M10,211.86641161214507C300,211.86641161214507 300,194.60917909699242 590,194.60917909699242" style="stroke-width: 39.0468411927381px; fill: none; stroke: rgb(174, 191, 105); stroke-opacity: 0.4;"></path><path class="link" d="M10,263.88850678473676C300,263.88850678473676 300,123.42002321282722 590,123.42002321282722" style="stroke-width: 32.1540643941023px; fill: none; stroke: rgb(105, 191, 139); stroke-opacity: 0.4;"></path><path class="link" d="M10,320.097579847827C300,320.097579847827 300,152.2914069552509 590,152.2914069552509" style="stroke-width: 25.588703090745px; fill: none; stroke: rgb(191, 105, 105); stroke-opacity: 0.4;"></path><path class="link" d="M10,371.57539153734825C300,371.57539153734825 300,255.50344610182123 590,255.50344610182123" style="stroke-width: 10.5188496754503px; fill: none; stroke: rgb(174, 105, 191); stroke-opacity: 0.4;"></path><path class="link" d="M10,337.4449411798421C300,337.4449411798421 300,235.69101147745351 590,235.69101147745351" style="stroke-width: 9.10601957328519px; fill: none; stroke: rgb(191, 105, 105); stroke-opacity: 0.4;"></path><path class="link" d="M10,394.29680895270025C300,394.29680895270025 300,274.3832838986087 590,274.3832838986087" style="stroke-width: 7.24082591812463px; fill: none; stroke: rgb(105, 139, 191); stroke-opacity: 0.4;"></path><path class="link" d="M10,283.46823998051264C300,283.46823998051264 300,227.63530069208616 590,227.63530069208616" style="stroke-width: 7.00540199744946px; fill: none; stroke: rgb(105, 191, 139); stroke-opacity: 0.4;"></path><path class="link" d="M10,234.60065339809987C300,234.60065339809987 300,291.2145180472568 590,291.2145180472568" style="stroke-width: 6.4216423791715px; fill: none; stroke: rgb(174, 191, 105); stroke-opacity: 0.4;"></path><path class="link" d="M10,289.65058963446955C300,289.65058963446955 300,307.1049878920747 590,307.1049878920747" style="stroke-width: 5.3592973104644px; fill: none; stroke: rgb(105, 191, 139); stroke-opacity: 0.4;"></path><path class="link" d="M10,344.0928369800398C300,344.0928369800398 300,321.87952256086203 590,321.87952256086203" style="stroke-width: 4.18977202711029px; fill: none; stroke: rgb(191, 105, 105); stroke-opacity: 0.4;"></path><path class="link" d="M10,294.37783891444207C300,294.37783891444207 300,336.0220091991575 590,336.0220091991575" style="stroke-width: 4.09520124948058px; fill: none; stroke: rgb(105, 191, 139); stroke-opacity: 0.4;"></path><path class="link" d="M10,399.86143948186674C300,399.86143948186674 300,350.0138273940019 590,350.0138273940019" style="stroke-width: 3.88843514020834px; fill: none; stroke: rgb(105, 139, 191); stroke-opacity: 0.4;"></path><path class="link" d="M10,348.1125248964737C300,348.1125248964737 300,363.8828468669848 590,363.8828468669848" style="stroke-width: 3.84960380575736px; fill: none; stroke: rgb(191, 105, 105); stroke-opacity: 0.4;"></path><path class="link" d="M10,403.40282852598546C300,403.40282852598546 300,377.40482024387796 590,377.40482024387796" style="stroke-width: 3.19434294802906px; fill: none; stroke: rgb(105, 139, 191); stroke-opacity: 0.4;"></path><path class="link" d="M10,351.5210133402112C300,351.5210133402112 300,390.4856782587513 590,390.4856782587513" style="stroke-width: 2.96737308171775px; fill: none; stroke: rgb(191, 105, 105); stroke-opacity: 0.4;"></path><path class="link" d="M10,378.20465976013406C300,378.20465976013406 300,403.3392081846709 590,403.3392081846709" style="stroke-width: 2.73968677012137px; fill: none; stroke: rgb(174, 105, 191); stroke-opacity: 0.4;"></path><path class="link" d="M10,353.913654014243C300,353.913654014243 300,415.61800570290444 590,415.61800570290444" style="stroke-width: 1.8179082663457px; fill: none; stroke: rgb(191, 105, 105); stroke-opacity: 0.4;"></path><path class="link" d="M10,355.25462465431514C300,355.25462465431514 300,426.9589763429766 590,426.9589763429766" style="stroke-width: 1px; fill: none; stroke: rgb(191, 105, 105); stroke-opacity: 0.4;"></path><path class="link" d="M10,296.76188224505285C300,296.76188224505285 300,437.7274355557465 590,437.7274355557465" style="stroke-width: 1px; fill: none; stroke: rgb(105, 191, 139); stroke-opacity: 0.4;"></path><path class="link" d="M10,379.9022052185874C300,379.9022052185874 300,448.39158033500973 590,448.39158033500973" style="stroke-width: 1px; fill: none; stroke: rgb(174, 105, 191); stroke-opacity: 0.4;"></path><path class="link" d="M10,380.453151642809C300,380.453151642809 300,458.9425267592313 590,458.9425267592313" style="stroke-width: 1px; fill: none; stroke: rgb(174, 105, 191); stroke-opacity: 0.4;"></path><path class="link" d="M10,355.89835074295377C300,355.89835074295377 300,469.3774806917995 590,469.3774806917995" style="stroke-width: 1px; fill: none; stroke: rgb(191, 105, 105); stroke-opacity: 0.4;"></path><path class="link" d="M10,297.200776626689C300,297.200776626689 300,479.69164194930426 590,479.69164194930426" style="stroke-width: 1px; fill: none; stroke: rgb(105, 191, 139); stroke-opacity: 0.4;"></path><path class="link" d="M10,356.17153133015233C300,356.17153133015233 300,489.8555646305291 590,489.8555646305291" style="stroke-width: 1px; fill: none; stroke: rgb(191, 105, 105); stroke-opacity: 0.4;"></path><path class="link" d="M10,356.2744845176174C300,356.2744845176174 300,499.95851781799416 590,499.95851781799416" style="stroke-width: 1px; fill: none; stroke: rgb(191, 105, 105); stroke-opacity: 0.4;"></path></g><g><g class="node" transform="translate(0,366.3159666996231)"><rect height="14.360429294014821" width="10"><title>Beverages
+1,002</title></rect><text x="16" y="7.180214647007411" dy=".35em" text-anchor="start" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Beverages</text></g><g class="node" transform="translate(0,95)"><rect height="142.8114745876856" width="10"><title>Heat &amp; Cook
+9,967</title></rect><text x="16" y="71.4057372938428" dy=".35em" text-anchor="start" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Heat &amp; Cook</text></g><g class="node" transform="translate(0,307.3032283024545)"><rect height="49.01273839716865" width="10"><title>Ice Creams
+3,421</title></rect><text x="16" y="24.506369198584323" dy=".35em" text-anchor="start" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Ice Creams</text></g><g class="node" transform="translate(0,247.8114745876856)"><rect height="49.4917537147689" width="10"><title>Premium Ice Creams
+3,454</title></rect><text x="16" y="24.74587685738445" dy=".35em" text-anchor="start" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Premium Ice Creams</text></g><g class="node" transform="translate(0,390.6763959936379)"><rect height="14.323604006362029" width="10"><title>Sides
+1,000</title></rect><text x="16" y="7.161802003181014" dy=".35em" text-anchor="start" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Sides</text></g><g class="node" transform="translate(590,479.58919027353875)"><rect height="0.20490335153104364" width="10" style="fill: rgb(102, 102, 102);"><title>Almond
+14</title></rect><text x="-6" y="0.10245167576552182" dy=".35em" text-anchor="end" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Almond</text></g><g class="node" transform="translate(590,499.9170356359884)"><rect height="0.08296436401152046" width="10" style="fill: rgb(102, 102, 102);"><title>Banana
+6</title></rect><text x="-6" y="0.04148218200576023" dy=".35em" text-anchor="end" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Banana</text></g><g class="node" transform="translate(590,175.08575850062337)"><rect height="39.04684119273808" width="10" style="fill: rgb(102, 102, 102);"><title>Beef Dishes
+2,725</title></rect><text x="-6" y="19.52342059636904" dy=".35em" text-anchor="end" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Beef Dishes</text></g><g class="node" transform="translate(590,224.13259969336144)"><rect height="16.11142157073465" width="10" style="fill: rgb(102, 102, 102);"><title>Caramel
+1,124</title></rect><text x="-6" y="8.055710785367324" dy=".35em" text-anchor="end" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Caramel</text></g><g class="node" transform="translate(590,348.06960982389774)"><rect height="3.8884351402083426" width="10" style="fill: rgb(102, 102, 102);"><title>Cheesy Potatoes
+271</title></rect><text x="-6" y="1.9442175701041713" dy=".35em" text-anchor="end" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Cheesy Potatoes</text></g><g class="node" transform="translate(590,2.842170943040401e-14)"><rect height="97.34299101577604" width="10" style="fill: rgb(102, 102, 102);"><title>Chicken Dishes
+6,793</title></rect><text x="-6" y="48.67149550788802" dy=".35em" text-anchor="end" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Chicken Dishes</text></g><g class="node" transform="translate(590,107.34299101577606)"><rect height="57.742767484847306" width="10" style="fill: rgb(102, 102, 102);"><title>Chocolate
+4,030</title></rect><text x="-6" y="28.871383742423653" dy=".35em" text-anchor="end" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Chocolate</text></g><g class="node" transform="translate(590,469.1657711100603)"><rect height="0.42341916347848524" width="10" style="fill: rgb(102, 102, 102);"><title>Cinnamon roll
+30</title></rect><text x="-6" y="0.21170958173924262" dy=".35em" text-anchor="end" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Cinnamon roll</text></g><g class="node" transform="translate(590,414.70905156973157)"><rect height="1.8179082663457" width="10" style="fill: rgb(102, 102, 102);"><title>Coconut
+127</title></rect><text x="-6" y="0.90895413317285" dy=".35em" text-anchor="end" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Coconut</text></g><g class="node" transform="translate(590,426.52695983607725)"><rect height="0.8640330137987363" width="10" style="fill: rgb(102, 102, 102);"><title>Coffee
+60</title></rect><text x="-6" y="0.43201650689936816" dy=".35em" text-anchor="end" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Coffee</text></g><g class="node" transform="translate(590,319.7846365473069)"><rect height="4.189772027110292" width="10" style="fill: rgb(102, 102, 102);"><title>Cookies and cream
+292</title></rect><text x="-6" y="2.094886013555146" dy=".35em" text-anchor="end" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Cookies and cream</text></g><g class="node" transform="translate(590,437.390992849876)"><rect height="0.6728854117411055" width="10" style="fill: rgb(102, 102, 102);"><title>Lemon
+47</title></rect><text x="-6" y="0.33644270587055275" dy=".35em" text-anchor="end" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Lemon</text></g><g class="node" transform="translate(590,458.7192824084024)"><rect height="0.4464887016578545" width="10" style="fill: rgb(102, 102, 102);"><title>Lemonade
+31</title></rect><text x="-6" y="0.22324435082892724" dy=".35em" text-anchor="end" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Lemonade</text></g><g class="node" transform="translate(590,361.9580449641061)"><rect height="3.8496038057573565" width="10" style="fill: rgb(102, 102, 102);"><title>Maple nut
+269</title></rect><text x="-6" y="1.9248019028786783" dy=".35em" text-anchor="end" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Maple nut</text></g><g class="node" transform="translate(590,304.4253392368425)"><rect height="5.359297310464401" width="10" style="fill: rgb(102, 102, 102);"><title>Orange
+374</title></rect><text x="-6" y="2.6796486552322003" dy=".35em" text-anchor="end" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Orange</text></g><g class="node" transform="translate(590,250.2440212640961)"><rect height="10.51884967545029" width="10" style="fill: rgb(102, 102, 102);"><title>Orange Juice
+734</title></rect><text x="-6" y="5.259424837725145" dy=".35em" text-anchor="end" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Orange Juice</text></g><g class="node" transform="translate(590,375.8076487698634)"><rect height="3.1943429480290577" width="10" style="fill: rgb(102, 102, 102);"><title>Pasta and Rice
+223</title></rect><text x="-6" y="1.5971714740145289" dy=".35em" text-anchor="end" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Pasta and Rice</text></g><g class="node" transform="translate(590,333.97440857441717)"><rect height="4.09520124948058" width="10" style="fill: rgb(102, 102, 102);"><title>Peanut Butter
+286</title></rect><text x="-6" y="2.04760062474029" dy=".35em" text-anchor="end" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Peanut Butter</text></g><g class="node" transform="translate(590,270.76287093954636)"><rect height="7.240825918124629" width="10" style="fill: rgb(102, 102, 102);"><title>Potato Mashed
+505</title></rect><text x="-6" y="3.6204129590623144" dy=".35em" text-anchor="end" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Potato Mashed</text></g><g class="node" transform="translate(590,448.0638782616171)"><rect height="0.6554041467853101" width="10" style="fill: rgb(102, 102, 102);"><title>Raspberry Juice
+46</title></rect><text x="-6" y="0.32770207339265506" dy=".35em" text-anchor="end" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Raspberry Juice</text></g><g class="node" transform="translate(590,401.9693647996102)"><rect height="2.739686770121367" width="10" style="fill: rgb(102, 102, 102);"><title>Raspberry Lemonade
+191</title></rect><text x="-6" y="1.3698433850606835" dy=".35em" text-anchor="end" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Raspberry Lemonade</text></g><g class="node" transform="translate(590,288.003696857671)"><rect height="6.421642379171503" width="10" style="fill: rgb(102, 102, 102);"><title>Seafood Dishes
+448</title></rect><text x="-6" y="3.2108211895857517" dy=".35em" text-anchor="end" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Seafood Dishes</text></g><g class="node" transform="translate(590,389.00199171789245)"><rect height="2.9673730817177506" width="10" style="fill: rgb(102, 102, 102);"><title>Sherbet
+207</title></rect><text x="-6" y="1.4836865408588753" dy=".35em" text-anchor="end" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Sherbet</text></g><g class="node" transform="translate(590,489.79409362506976)"><rect height="0.12294201091862617" width="10" style="fill: rgb(102, 102, 102);"><title>Sweet Salty
+9</title></rect><text x="-6" y="0.06147100545931308" dy=".35em" text-anchor="end" style="font-size: 11px; font-family: Arial, Helvetica; pointer-events: none;">Sweet Salty</text></g></g></g></svg></center>
+					
+				<nav>		<br>
+				</section>
+            </div>
+			<div class="col-md-4">
+				<section class="panel">
+				<nav ><br><br>
+					  <ul class="bar-legend">
+                                        <li><span class="blue"></span> Heat & Cook</li>
+                                        <li><span class="green"></span> Premium Ice Creams</li>
+                                        <li><span class="pink"></span> Ice Creams</li>
+                                        <li><span class="purple"></span> Beverages</li>
+                                        <li><span class="red"></span> Sides</li>
+                                    </ul>
+				<nav>		
+				<br><br><br><br>
+				</section>
+            </div>
+       
+               
+            <div class="row">
+                <div class="col-sm-12">
+				  <section class="panel">
+                    <h3>Description</h3>
+					<br>
+					<h4>This chart fetches data from the database and maps the product to its categories, using Net sales as the mapping parameter. Higher the Net Sale of a category, greater is the width of the product. </h4>
+					<br>
+				  </section>
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+
+        <!--footer section start-->
+        <footer>
+            2014 &copy; Root|Realistic Overview Of Tuples
+        </footer>
+        <!--footer section end-->
+
+
+    </div>
+    <!-- main content end-->
+</section>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="js/jquery-migrate-1.2.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/modernizr.min.js"></script>
+<script src="js/jquery.nicescroll.js"></script>
+
+
+
+
+
+<!--common scripts for all pages-->
+<script src="js/scripts.js"></script>
+
+
+
+
+</body>
+</html>

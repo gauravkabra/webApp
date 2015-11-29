@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  
+  <link rel="shortcut icon" href="#" type="images/favicon.png">
+  
+  <!--d3 and dimple libraries--> 
+  <script type="text/javascript" src="/project/d3/d3.js"></script>
+  <script type="text/javascript" src="/project/d3/dimple.js"></script>
+
+  <title>Root|Realistic Overview Of Tuples</title>
+
+  <!--icheck-->
+  <link href="js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
+  <link href="js/iCheck/skins/square/square.css" rel="stylesheet">
+  <link href="js/iCheck/skins/square/red.css" rel="stylesheet">
+  <link href="js/iCheck/skins/square/blue.css" rel="stylesheet">
+
+  <!--dashboard calendar-->
+  <link href="css/clndr.css" rel="stylesheet">
+
+  <!--Morris Chart CSS -->
+  <link rel="stylesheet" href="js/morris-chart/morris.css">
+
+  <!--common-->
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/style-responsive.css" rel="stylesheet">
+
+
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- left side start-->
+    <div class="left-side sticky-left-side">
+
+        <!--logo and iconic logo start-->
+        <div class="logo">
+            <a href="index.html"><img src="images/logo.png" alt=""></a>
+        </div>
+
+        <div class="logo-icon text-center">
+            <a href="index.html"><img src="images/logo_icon.png" alt=""></a>
+        </div>
+        <!--logo and iconic logo end-->
+
+        <div class="left-side-inner">
+
+            <!-- visible to small devices only -->
+            <div class="visible-xs hidden-sm hidden-md hidden-lg">
+                <div class="media logged-user">
+                    <img alt="" src="images/photos/user-avatar.png" class="media-object">
+                    <div class="media-body">
+                        <h4><a href="#">Admin</a></h4>
+                        <span>"Hello There..."</span>
+                    </div>
+                </div>
+
+                <h5 class="left-nav-title">Account Information</h5>
+                <ul class="nav nav-pills nav-stacked custom-nav">
+                
+                  <li><a href="#"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
+                </ul>
+            </div>
+
+            <!--sidebar nav start-->
+            <ul class="nav nav-pills nav-stacked custom-nav">
+                <li class="active"><a href="index.html"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+                
+                
+
+              
+				<li class="menu-list"><a href="#"><i class="fa fa-th-list"></i> <span>Data Organisation</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="basic_table.html"> Products Available </a></li>
+                        <li><a href="dynamic_table.html"> Mode Of Order </a></li>
+                        <li><a href="responsive_table.html"> Sizes Available </a></li>
+                        
+                    </ul>
+                </li>
+				
+                <li class="menu-list"><a href=""><i class="fa fa-bar-chart-o"></i> <span>Charts</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="product_sales_charts.html"> Net Sales VS Product</a></li>
+                        <li><a href="product_categories_charts.html"> Product VS Its Categories</a></li>
+                        <li><a href="product_time_charts.html">Product VS Time</a></li>
+                        <li><a href="net_time_charts.html">Net Sales VS Time</a></li>
+                    </ul>
+                </li>
+                
+
+                <li class="menu-list"><a href="#"><i class="fa fa-map-marker"></i> <span>Geographical Representation</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="google_map.php"> Google Map</a></li>
+                        <li><a href="net_sales_map.html"> Net Sales Map</a></li>
+                        <li><a href="Product_sales_map.html"> Product Sales Map</a></li>
+                    </ul>
+                </li>
+                
+
+            </ul>
+            <!--sidebar nav end-->
+
+        </div>
+    </div>
+    <!-- left side end-->
+    
+    <!-- main content start-->
+    <div class="main-content" >
+
+        <!-- header section start-->
+        <div class="header-section">
+
+            <!--toggle button start-->
+            <a class="toggle-btn"><i class="fa fa-bars"></i></a>
+            <!--toggle button end-->
+
+          
+
+            <!--notification menu start -->
+            <div class="menu-right">
+                <ul class="notification-menu">
+                  
+                   
+                    
+                    <li>
+                        <a href="#" class="btn btn-default dropdown-toggle">
+                            <img src="images/photos/user-avatar.png" alt="" />
+                            Admin
+                            <span class="caret"></span>
+                        </a>
+                        
+                    </li>
+
+                </ul>
+            </div>
+            <!--notification menu end -->
+
+        </div>
+        <!-- header section end-->
+
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                Dashboard
+            </h3>
+            <ul class="breadcrumb">
+                
+                <li class="active"> Geographical Representaion / Product Sales Map </li>
+            </ul>
+            
+        </div>
+        <!-- page heading end-->
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+         
+            <div class="col-md-12">
+				  <section class="panel">
+				<nav ><br>
+					<center><h3>Area Wise Product Sales </h3></center><br><br><br>
+						<center>
+						
+<iframe width='100%' height='520' frameborder='0' src='http://akshay1708.cartodb.com/viz/ac94b55c-82ad-11e4-b59b-0e018d66dc29/embed_map' allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+						</center>
+				<nav>	<br><br>	
+				</section>
+            </div>
+       
+               
+            <div class="row">
+                <div class="col-sm-12">
+				  <section class="panel">
+                    <h3>Description</h3>
+					<br>
+					<h4>In this map different colors represent different product categories. On hovering over a particular location, it displays the NetSales, ProductCategory and ProductSubCategory. Shade represemt NetSales. Darker shade means more Net Sale.
+</h4>
+					<br>
+					</section>
+				</div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+
+        <!--footer section start-->
+        <footer>
+            2014 &copy; Root|Realistic Overview Of Tuples
+        </footer>
+        <!--footer section end-->
+
+
+    </div>
+    <!-- main content end-->
+</section>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="js/jquery-migrate-1.2.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/modernizr.min.js"></script>
+<script src="js/jquery.nicescroll.js"></script>
+
+
+
+
+
+<!--common scripts for all pages-->
+<script src="js/scripts.js"></script>
+
+
+
+
+</body>
+</html>
